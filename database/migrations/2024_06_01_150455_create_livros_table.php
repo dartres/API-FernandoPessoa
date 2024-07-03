@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('titulo');
             $table->unsignedBigInteger('id_autor');
             $table->string('idioma');
-            $table->integer('lancamento');
+            $table->integer('lancamento')->nullable();
             $table->string('tipo');
-            $table->string('link');
+            $table->string('link')->nullable();
+            $table->unsignedBigInteger('id_imagem')->nullable();
             $table->timestamps();
 
+            $table->foreign('id_imagem')->references('id')->on('imagens');
             $table->foreign('id_autor')->references('id')->on('autors');
         });
     }

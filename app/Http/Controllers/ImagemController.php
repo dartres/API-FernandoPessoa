@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Livro;
+use App\Models\Imagem;
 use Illuminate\Http\Request;
 
-
-class LivroController extends Controller
+class ImagemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class LivroController extends Controller
     public function index()
     {
         return
-        $livros = Livro::all()->toArray();
+        $imagens = Imagem::all()->toArray();
 
-    return $livros;
+    return $imagens;
     }
 
     /**
@@ -28,33 +27,34 @@ class LivroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
-        if (Livro::create($request->all())){
+        if (Imagem::create($request->all())){
             return response()->json([
-                'message' => 'Livro cadastrada com sucesso!'
+                'message' => 'imagem cadastrada com sucesso!'
             ], 201);
         };
 
         return response()->json([
-            'message' => 'Erro ao cadastrar livro!'
+            'message' => 'Erro ao cadastrar imagem!'
         ], 404);
     }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($livro)
+    public function show($imagem)
     {
-        $livro = Livro::find($livro);
-        if($livro){
-            return $livro;
+        $imagem = Imagem::find($imagem);
+        if($imagem){
+
+            return $imagem;
         }
 
         return response()->json([
-            'message' => 'Erro ao pesquisar livro!'
+            'message' => 'Erro ao pesquisar imagem!'
         ], 404);
     }
 
@@ -65,18 +65,9 @@ class LivroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $livro)
+    public function update(Request $request, $id)
     {
-        $livro = Livro::find($livro);
-
-        if($livro){
-            $livro->update($request->all());
-            return $livro;
-        ;}
-
-        return response()->json([
-            'message' => 'Erro ao atualizar livro!'
-        ], 404);
+        //
     }
 
     /**
@@ -85,18 +76,8 @@ class LivroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($livro)
+    public function destroy($id)
     {
-        if(Livro::destroy($livro)){
-            return response()->json([
-                'message' => 'Livro deletado com sucesso'
-            ], 201);
-        };
-
-        return response()->json([
-            'message' => 'Erro ao deletar livro!'
-        ],404);
-
+        //
     }
 }
-
